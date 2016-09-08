@@ -49,6 +49,7 @@
 		5B6D70C01D80392A00AB36EC /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6D70921D80392A00AB36EC /* GoogleNetworkingUtilities.framework */; };
 		5B6D70C21D803D9500AB36EC /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6D70C11D803D9500AB36EC /* GameplayKit.framework */; };
 		5B6D70C51D80438800AB36EC /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70C41D80438800AB36EC /* GameRules.swift */; };
+		5B6D70C71D81E28E00AB36EC /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70C61D81E28E00AB36EC /* Quest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		5B6D70921D80392A00AB36EC /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
 		5B6D70C11D803D9500AB36EC /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = System/Library/Frameworks/GameplayKit.framework; sourceTree = SDKROOT; };
 		5B6D70C41D80438800AB36EC /* GameRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
+		5B6D70C61D81E28E00AB36EC /* Quest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				5B6D70611D80392900AB36EC /* Characters.swift */,
 				5B6D70621D80392900AB36EC /* GameStates.swift */,
 				5B6D70C41D80438800AB36EC /* GameRules.swift */,
+				5B6D70C61D81E28E00AB36EC /* Quest.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6D70C71D81E28E00AB36EC /* Quest.swift in Sources */,
 				5B6D70431D80384100AB36EC /* ViewController.swift in Sources */,
 				5B6D70A01D80392A00AB36EC /* GameStates.swift in Sources */,
 				5B6D70BC1D80392A00AB36EC /* README.md in Sources */,

@@ -18,6 +18,11 @@ enum QuestCard: Int {
     case Success
 }
 
+enum QuestResult {
+    case Success (numberOfFails: Int?)
+    case Fail (numberOfFails: Int)
+}
+
 class GameRules {
     
     let minimumNumberOfPlayers = 5
@@ -50,3 +55,4 @@ class GameRules {
         return 1
     }
 }
+

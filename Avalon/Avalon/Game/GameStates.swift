@@ -84,10 +84,9 @@ class GameStateMachine: GKStateMachine {
     var numberOfPlayers: Int
     
     private(set) var currentQuest = 0
-    private(set) var score: [Team?] = [nil, nil, nil, nil, nil]
+    private(set) var score: [QuestResult?] = [nil, nil, nil, nil, nil]
     
     private let rules = GameRules()
-    
     
     init(numberOfPlayers: Int) {
         self.numberOfPlayers = numberOfPlayers
@@ -107,9 +106,9 @@ class GameStateMachine: GKStateMachine {
         return approveCount > rejectCount
     }
     
-    func evaluateQuest(questCards: [QuestCard]) -> Bool {
+    func evaluateQuest(questCards: [QuestCard]) -> QuestResult {
         
-        var result = true
+        var result: QuestResult
         
         let failCount = questCards.filter { (card) -> Bool in
             return card == .Fail
@@ -117,9 +116,37 @@ class GameStateMachine: GKStateMachine {
         
         let failsRequired = rules.numberOfFailsRequired(currentQuest, totalPlayers: numberOfPlayers)
         
-        result = failCount >= failsRequired
+        if failCount >= failsRequired {
+            result = QuestResult.Fail(numberOfFails: failCount)
+        } else {
+            result = QuestResult.Success(numberOfFails: failCount)
+        }
+        
+        score[currentQuest] = result
+        
+        currentQuest += 1
         
         return result
     }
+    
+    func evaluateGameResult() -> Team? {
+        
+        let flatScore = score.flatMap { return $0 }
+        
+        guard flatScore.count == 5 else { return nil }
+        
+        var successes = 0
+        for result in flatScore {
+            switch result {
+            case .Success:
+                successes += 1
+            default:
+                break
+            }
+        }
+        
+        return (successes >= 3) ? Team.LoyalServantsOfArthur : Team.MinionsOfMordred
+    }
+    
 }
 
