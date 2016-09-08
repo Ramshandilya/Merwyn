@@ -11,7 +11,7 @@ import Foundation
 enum GameState: Int {
     case PlayersJoining = 1
     case SelectCharacters
-    case GameStarted
+    case GameStarted //Deal characters
     case SelectQuestTeam
     case VoteQuestTeam
     case QuestBegan
@@ -68,12 +68,6 @@ class QuestEndedState: GKState {
     override func isValidNextState(stateClass: AnyClass) -> Bool {
         return (stateClass == GameEndedState.self) || (stateClass == SelectQuestTeamState.self)
     }
-    
-    override func willExitWithNextState(nextState: GKState) {
-        guard let stateMachine = stateMachine as? GameStateMachine else { return }
-        
-        stateMachine.incrementQuestCounter()
-    }
 }
 
 class GameEndedState: GKState {
@@ -87,10 +81,45 @@ class GameEndedState: GKState {
 
 class GameStateMachine: GKStateMachine {
     
-    private(set) var questsCompleted = 0
+    var numberOfPlayers: Int
+    
+    private(set) var currentQuest = 0
+    private(set) var score: [Team?] = [nil, nil, nil, nil, nil]
+    
+    private let rules = GameRules()
     
     
-    func incrementQuestCounter() {
-        questsCompleted += 1
+    init(numberOfPlayers: Int) {
+        self.numberOfPlayers = numberOfPlayers
+        
+        super.init(states: [PlayersJoiningState(), SelectCharactersState(), GameStartedState(), SelectQuestTeamState(), VoteQuestTeamState(), QuestBeganState(), QuestEndedState(), GameEndedState()])
+        
+        enterState(PlayersJoiningState.self)
+    }
+    
+    func evaluateVotingRound(votes: [VoteToken]) -> Bool {
+        let approveCount = votes.filter { (vote) -> Bool in
+            return vote == .Approve
+        }.count
+        
+        let rejectCount = votes.count - approveCount
+        
+        return approveCount > rejectCount
+    }
+    
+    func evaluateQuest(questCards: [QuestCard]) -> Bool {
+        
+        var result = true
+        
+        let failCount = questCards.filter { (card) -> Bool in
+            return card == .Fail
+        }.count
+        
+        let failsRequired = rules.numberOfFailsRequired(currentQuest, totalPlayers: numberOfPlayers)
+        
+        result = failCount >= failsRequired
+        
+        return result
     }
 }
+

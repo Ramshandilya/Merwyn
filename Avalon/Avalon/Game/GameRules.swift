@@ -8,10 +8,22 @@
 
 import Foundation
 
+enum VoteToken: Int {
+    case Reject
+    case Approve
+}
+
+enum QuestCard: Int {
+    case Fail
+    case Success
+}
+
 class GameRules {
     
     let minimumNumberOfPlayers = 5
     let maximumNumberOfPlayers = 10
+    
+    let numberOfMinions = [5: 2, 6: 2, 7: 3, 8: 3, 9: 4, 10: 4]
     
     private let playersForQuest: [Int: [Int]] =
         [5: [2, 3, 2, 3, 3],
