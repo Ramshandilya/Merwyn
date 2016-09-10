@@ -83,6 +83,7 @@ class GameStateMachine: GKStateMachine {
     
     var numberOfPlayers: Int
     
+    private(set) var playingCharacters = [Character]()
     private(set) var currentQuest = 0
     private(set) var score: [QuestResult?] = [nil, nil, nil, nil, nil]
     
@@ -146,6 +147,37 @@ class GameStateMachine: GKStateMachine {
         }
         
         return (successes >= 3) ? Team.LoyalServantsOfArthur : Team.MinionsOfMordred
+    }
+    
+    func prepareCharacters(preSelected: [Character]?) {
+        
+        guard let maxMinions = rules.numberOfMinions[numberOfPlayers] else { return }
+        
+        if let preSelected = preSelected {
+            playingCharacters += preSelected
+        }
+        
+        var numberOfMinionsChosen = 0
+        var numberOfLoyalsChosen = 0
+        
+        for character in playingCharacters {
+            if  character.isMinionOfMordred() {
+                numberOfMinionsChosen += 1
+            } else {
+                numberOfLoyalsChosen += 1
+            }
+        }
+        
+        let numOfMinionsToTake = maxMinions - numberOfMinionsChosen
+        let normalMinions: [Character] = [.MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4]
+        let minionsToTake = normalMinions[0..<numOfMinionsToTake]
+        
+        
+        let numOfLoyalsToTake = (numberOfPlayers - maxMinions) - numberOfLoyalsChosen
+        let normalLoyals: [Character] = [.LoyalServant1, .LoyalServant2, .LoyalServant3, .LoyalServant4]
+        let loyalsToTake = normalLoyals[0..<numOfLoyalsToTake]
+        
+        playingCharacters += minionsToTake + loyalsToTake
     }
     
 }
