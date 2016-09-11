@@ -34,6 +34,66 @@ enum Character: Int {
     
     static let allMinionsOfMordred: [Character] = [.Mordred, .Morgana, .Oberon, .Assassin, .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4]
     
+    var name: String {
+        var val = ""
+        
+        switch self {
+        case .Mordred:
+            val = "Mordred"
+        case .Morgana:
+            val = "Morgana"
+        case .Merlin:
+            val = "Merlin"
+        case .Percival:
+            val = "Percival"
+        case .Oberon:
+            val = "Oberon"
+        case .Assassin:
+            val = "Assassin"
+        default:
+            break
+        }
+        
+        return val
+    }
+    
+    var description: String {
+        var val = ""
+        
+        switch self {
+        case .Mordred:
+            val = "Unknown to Merlin"
+        case .Morgana:
+            val = "Appears as Merlin"
+        case .Merlin:
+            val = "Knows evil"
+        case .Oberon:
+            val = "Unknown to evil"
+        default:
+            break
+        }
+        
+        return val
+    }
+    
+    var information: String {
+        
+        var val = ""
+        
+        switch self {
+        case .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4, .Assassin, .Mordred, .Morgana:
+            val = "The highlighted characters are the Minions of Mordred."
+        case .Merlin:
+            val = "The highlighted characters are the Minions of Mordred."
+        case .Percival:
+            val = "The highlighted characters are Merlin and Morgana."
+        default:
+            break
+        }
+        
+        return val
+    }
+    
     func isMinionOfMordred() -> Bool {
         if Character.allMinionsOfMordred.contains(self) {
             return true
@@ -66,5 +126,7 @@ enum Character: Int {
         
         return chars
     }
+    
+    
 }
 
