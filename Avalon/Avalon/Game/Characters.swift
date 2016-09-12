@@ -34,6 +34,10 @@ enum Character: Int {
     
     static let allMinionsOfMordred: [Character] = [.Mordred, .Morgana, .Oberon, .Assassin, .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4]
     
+    static let mandatoryCharacters: [Character] = [.Merlin, .Assassin]
+    
+    static let charactersToChoose: [Character] = [.Mordred, .Morgana, .Oberon, .Percival]
+    
     var name: String {
         var val = ""
         
