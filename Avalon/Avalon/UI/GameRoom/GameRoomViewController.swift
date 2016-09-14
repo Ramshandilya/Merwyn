@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayersJoiningViewController: UIViewController {
+class GameRoomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

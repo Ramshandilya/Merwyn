@@ -53,8 +53,12 @@
 		5B6D70DD1D87BC7600AB36EC /* CharacterSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70D51D87BC7600AB36EC /* CharacterSelectionViewController.swift */; };
 		5B6D70DE1D87BC7600AB36EC /* CharacterSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70D61D87BC7600AB36EC /* CharacterSelectionViewModel.swift */; };
 		5B6D70DF1D87BC7600AB36EC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70D81D87BC7600AB36EC /* GameViewController.swift */; };
-		5B6D70E01D87BC7600AB36EC /* PlayersJoiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70DB1D87BC7600AB36EC /* PlayersJoiningViewController.swift */; };
 		5B6D70E21D87BCB700AB36EC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70E11D87BCB700AB36EC /* HomeViewController.swift */; };
+		5B6D70E61D87C3D600AB36EC /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70E51D87C3D600AB36EC /* FirebaseClient.swift */; };
+		5B6D70E81D87D0EC00AB36EC /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70E71D87D0EC00AB36EC /* GameRoom.swift */; };
+		5B6D70EA1D87D14900AB36EC /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70E91D87D14900AB36EC /* Player.swift */; };
+		5B6D70ED1D87D49B00AB36EC /* GameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70EC1D87D49B00AB36EC /* GameRoomViewController.swift */; };
+		5B6D70EF1D87D4AD00AB36EC /* GameRoomsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70EE1D87D4AD00AB36EC /* GameRoomsListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,8 +125,12 @@
 		5B6D70D51D87BC7600AB36EC /* CharacterSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectionViewController.swift; sourceTree = "<group>"; };
 		5B6D70D61D87BC7600AB36EC /* CharacterSelectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectionViewModel.swift; sourceTree = "<group>"; };
 		5B6D70D81D87BC7600AB36EC /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		5B6D70DB1D87BC7600AB36EC /* PlayersJoiningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersJoiningViewController.swift; sourceTree = "<group>"; };
 		5B6D70E11D87BCB700AB36EC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5B6D70E51D87C3D600AB36EC /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		5B6D70E71D87D0EC00AB36EC /* GameRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRoom.swift; sourceTree = "<group>"; };
+		5B6D70E91D87D14900AB36EC /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5B6D70EC1D87D49B00AB36EC /* GameRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRoomViewController.swift; sourceTree = "<group>"; };
+		5B6D70EE1D87D4AD00AB36EC /* GameRoomsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRoomsListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +204,8 @@
 				5B6D70401D80384100AB36EC /* AppDelegate.swift */,
 				5B6D70D21D87BC7600AB36EC /* UI */,
 				5B6D70601D80392900AB36EC /* Game */,
+				5B6D70E31D87C3C700AB36EC /* FirebaseInterface */,
+				5B6D70E41D87C3C700AB36EC /* Model */,
 				5B6D70631D80392900AB36EC /* ThirdParty */,
 				5B6D70471D80384100AB36EC /* Assets.xcassets */,
 				5B6D70491D80384100AB36EC /* LaunchScreen.storyboard */,
@@ -383,7 +393,7 @@
 			children = (
 				5B6D70441D80384100AB36EC /* Main.storyboard */,
 				5B6D70D91D87BC7600AB36EC /* Home */,
-				5B6D70DA1D87BC7600AB36EC /* PlayersJoining */,
+				5B6D70EB1D87D49B00AB36EC /* GameRoom */,
 				5B6D70D31D87BC7600AB36EC /* CharacterSelection */,
 				5B6D70D71D87BC7600AB36EC /* Game */,
 			);
@@ -416,12 +426,30 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		5B6D70DA1D87BC7600AB36EC /* PlayersJoining */ = {
+		5B6D70E31D87C3C700AB36EC /* FirebaseInterface */ = {
 			isa = PBXGroup;
 			children = (
-				5B6D70DB1D87BC7600AB36EC /* PlayersJoiningViewController.swift */,
+				5B6D70E51D87C3D600AB36EC /* FirebaseClient.swift */,
 			);
-			path = PlayersJoining;
+			path = FirebaseInterface;
+			sourceTree = "<group>";
+		};
+		5B6D70E41D87C3C700AB36EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B6D70E71D87D0EC00AB36EC /* GameRoom.swift */,
+				5B6D70E91D87D14900AB36EC /* Player.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B6D70EB1D87D49B00AB36EC /* GameRoom */ = {
+			isa = PBXGroup;
+			children = (
+				5B6D70EC1D87D49B00AB36EC /* GameRoomViewController.swift */,
+				5B6D70EE1D87D4AD00AB36EC /* GameRoomsListViewController.swift */,
+			);
+			path = GameRoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,17 +558,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B6D70E01D87BC7600AB36EC /* PlayersJoiningViewController.swift in Sources */,
 				5B6D70DD1D87BC7600AB36EC /* CharacterSelectionViewController.swift in Sources */,
+				5B6D70ED1D87D49B00AB36EC /* GameRoomViewController.swift in Sources */,
 				5B6D70DE1D87BC7600AB36EC /* CharacterSelectionViewModel.swift in Sources */,
 				5B6D70C71D81E28E00AB36EC /* Quest.swift in Sources */,
 				5B6D70A01D80392A00AB36EC /* GameStates.swift in Sources */,
+				5B6D70E81D87D0EC00AB36EC /* GameRoom.swift in Sources */,
 				5B6D70DF1D87BC7600AB36EC /* GameViewController.swift in Sources */,
 				5B6D70DC1D87BC7600AB36EC /* CharacterSelectionTableViewCell.swift in Sources */,
 				5B6D70E21D87BCB700AB36EC /* HomeViewController.swift in Sources */,
+				5B6D70EA1D87D14900AB36EC /* Player.swift in Sources */,
 				5B6D709F1D80392A00AB36EC /* Characters.swift in Sources */,
+				5B6D70EF1D87D4AD00AB36EC /* GameRoomsListViewController.swift in Sources */,
 				5B6D70411D80384100AB36EC /* AppDelegate.swift in Sources */,
 				5B6D70C51D80438800AB36EC /* GameRules.swift in Sources */,
+				5B6D70E61D87C3D600AB36EC /* FirebaseClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
