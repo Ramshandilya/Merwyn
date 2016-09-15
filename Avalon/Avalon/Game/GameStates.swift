@@ -23,56 +23,57 @@ import GameplayKit
 
 class PlayersJoiningState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == SelectCharactersState.self
     }
 }
 
 class SelectCharactersState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == GameStartedState.self
     }
 }
 
 class GameStartedState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == SelectQuestTeamState.self
     }
 }
 
 class SelectQuestTeamState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == VoteQuestTeamState.self
     }
 }
 
 class VoteQuestTeamState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return (stateClass == QuestBeganState.self) || (stateClass == SelectQuestTeamState.self)
     }
 }
 
 class QuestBeganState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == QuestEndedState.self
     }
 }
 
 class QuestEndedState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return (stateClass == GameEndedState.self) || (stateClass == SelectQuestTeamState.self)
     }
 }
 
 class GameEndedState: GKState {
     
-    override func isValidNextState(stateClass: AnyClass) -> Bool {
+    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return stateClass == SelectCharactersState.self
     }
 }
@@ -94,7 +95,7 @@ class GameStateMachine: GKStateMachine {
         
         super.init(states: [PlayersJoiningState(), SelectCharactersState(), GameStartedState(), SelectQuestTeamState(), VoteQuestTeamState(), QuestBeganState(), QuestEndedState(), GameEndedState()])
         
-        enterState(PlayersJoiningState.self)
+        enter(PlayersJoiningState.self)
     }
     
     func evaluateVotingRound(votes: [VoteToken]) -> Bool {
@@ -115,7 +116,7 @@ class GameStateMachine: GKStateMachine {
             return card == .Fail
         }.count
         
-        let failsRequired = rules.numberOfFailsRequired(currentQuest, totalPlayers: numberOfPlayers)
+        let failsRequired = rules.numberOfFailsRequired(questNumber: currentQuest, totalPlayers: numberOfPlayers)
         
         if failCount >= failsRequired {
             result = QuestResult.Fail(numberOfFails: failCount)

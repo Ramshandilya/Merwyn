@@ -23,19 +23,19 @@ class FirebaseClient {
     
     weak var gameRoomDelegate: GameRoomDelegate?
     
-    private var gameRoomRefHandle: FIRDatabaseHandle!
+    var gameRoomRefHandle: FIRDatabaseHandle!
 }
 
 extension FirebaseClient {
     
     func setupGameRoomObservers() {
         
-        gameRoomRefHandle = databseRef.child("game_rooms").observeEventType(FIRDataEventType.ChildAdded, withBlock: {[weak self] (snapshot) in
+        gameRoomRefHandle = databseRef.child("game_rooms").observe(FIRDataEventType.childAdded, with: {[weak self] (snapshot) in
             if let strongSelf = self,
-            snapshotJSON = snapshot.value as? JSONDictionary,
-                gameRoom = GameRoom(json: snapshotJSON) {
+                let snapshotJSON = snapshot.value as? JSONDictionary,
+                let gameRoom = GameRoom(json: snapshotJSON) {
                 
-                strongSelf.gameRoomDelegate?.firebaseClient(strongSelf, databaseDidAddGameRoom: gameRoom)
+                strongSelf.gameRoomDelegate?.firebaseClient(client: strongSelf, databaseDidAddGameRoom: gameRoom)
             }
         })
     }

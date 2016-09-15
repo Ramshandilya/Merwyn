@@ -25,13 +25,13 @@ class CharacterSelectionViewController: UIViewController {
 
 extension CharacterSelectionViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.rows.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(CharacterSelectionTableViewCell.kCellReuseIdentifier, forIndexPath: indexPath) as! CharacterSelectionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterSelectionTableViewCell.kCellReuseIdentifier, for: indexPath) as! CharacterSelectionTableViewCell
         
         let row = viewModel.rows[indexPath.row]
         
@@ -44,9 +44,9 @@ extension CharacterSelectionViewController: UITableViewDataSource {
 
 extension CharacterSelectionViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = viewModel.rows[indexPath.row]
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! CharacterSelectionTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! CharacterSelectionTableViewCell
         
         if row.selectable {
             row.selected = !row.selected

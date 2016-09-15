@@ -20,8 +20,8 @@ class CharacterSelectionTableViewCell: UITableViewCell {
         
     }
     
-    func toggleSelection(selected: Bool) {
-        tickImageView.hidden = !selected
+    func toggleSelection(_ selected: Bool) {
+        tickImageView.isHidden = !selected
     }
     
 }
