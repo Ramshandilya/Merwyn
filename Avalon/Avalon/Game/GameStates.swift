@@ -9,14 +9,14 @@
 import Foundation
 
 enum GameState: Int {
-    case PlayersJoining = 1
-    case SelectCharacters
-    case GameStarted //Deal characters
-    case SelectQuestTeam
-    case VoteQuestTeam
-    case QuestBegan
-    case QuestEnded
-    case GameEnded
+    case playersJoining = 1
+    case selectCharacters
+    case gameStarted //Deal characters
+    case selectQuestTeam
+    case voteQuestTeam
+    case questBegan
+    case questEnded
+    case gameEnded
 }
 
 import GameplayKit
@@ -100,7 +100,7 @@ class GameStateMachine: GKStateMachine {
     
     func evaluateVotingRound(votes: [VoteToken]) -> Bool {
         let approveCount = votes.filter { (vote) -> Bool in
-            return vote == .Approve
+            return vote == .approve
         }.count
         
         let rejectCount = votes.count - approveCount
@@ -113,15 +113,15 @@ class GameStateMachine: GKStateMachine {
         var result: QuestResult
         
         let failCount = questCards.filter { (card) -> Bool in
-            return card == .Fail
+            return card == .fail
         }.count
         
         let failsRequired = rules.numberOfFailsRequired(questNumber: currentQuest, totalPlayers: numberOfPlayers)
         
         if failCount >= failsRequired {
-            result = QuestResult.Fail(numberOfFails: failCount)
+            result = QuestResult.fail(numberOfFails: failCount)
         } else {
-            result = QuestResult.Success(numberOfFails: failCount)
+            result = QuestResult.success(numberOfFails: failCount)
         }
         
         score[currentQuest] = result
@@ -140,14 +140,14 @@ class GameStateMachine: GKStateMachine {
         var successes = 0
         for result in flatScore {
             switch result {
-            case .Success:
+            case .success:
                 successes += 1
             default:
                 break
             }
         }
         
-        return (successes >= 3) ? Team.LoyalServantsOfArthur : Team.MinionsOfMordred
+        return (successes >= 3) ? Team.loyalServantsOfArthur : Team.minionsOfMordred
     }
     
     func prepareCharacters(preSelected: [Character]?) {
@@ -170,12 +170,12 @@ class GameStateMachine: GKStateMachine {
         }
         
         let numOfMinionsToTake = maxMinions - numberOfMinionsChosen
-        let normalMinions: [Character] = [.MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4]
+        let normalMinions: [Character] = [.minionOfMordred1, .minionOfMordred2, .minionOfMordred3, .minionOfMordred4]
         let minionsToTake = normalMinions[0..<numOfMinionsToTake]
         
         
         let numOfLoyalsToTake = (numberOfPlayers - maxMinions) - numberOfLoyalsChosen
-        let normalLoyals: [Character] = [.LoyalServant1, .LoyalServant2, .LoyalServant3, .LoyalServant4]
+        let normalLoyals: [Character] = [.loyalServant1, .loyalServant2, .loyalServant3, .loyalServant4]
         let loyalsToTake = normalLoyals[0..<numOfLoyalsToTake]
         
         playingCharacters += minionsToTake + loyalsToTake

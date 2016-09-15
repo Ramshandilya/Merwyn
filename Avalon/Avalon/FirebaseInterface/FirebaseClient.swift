@@ -14,7 +14,7 @@ typealias JSONDictionary = Dictionary<String, AnyObject>
 private let kFirebaseURL = "https://merwyn-446f7.firebaseio.com/"
 
 protocol GameRoomDelegate: class {
-    func firebaseClient(client: FirebaseClient, databaseDidAddGameRoom room: GameRoom)
+    func firebaseClient(_ client: FirebaseClient, databaseDidAddGameRoom room: GameRoom)
 }
 
 class FirebaseClient {
@@ -35,7 +35,7 @@ extension FirebaseClient {
                 let snapshotJSON = snapshot.value as? JSONDictionary,
                 let gameRoom = GameRoom(json: snapshotJSON) {
                 
-                strongSelf.gameRoomDelegate?.firebaseClient(client: strongSelf, databaseDidAddGameRoom: gameRoom)
+                strongSelf.gameRoomDelegate?.firebaseClient(strongSelf, databaseDidAddGameRoom: gameRoom)
             }
         })
     }

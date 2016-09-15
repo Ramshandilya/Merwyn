@@ -9,50 +9,50 @@
 import Foundation
 
 enum Team {
-    case LoyalServantsOfArthur
-    case MinionsOfMordred
+    case loyalServantsOfArthur
+    case minionsOfMordred
 }
 
 enum Character: Int {
     
-    case Merlin = 1
-    case Percival
-    case Morgana
-    case Mordred
-    case Oberon
-    case Assassin
-    case LoyalServant1
-    case LoyalServant2
-    case LoyalServant3
-    case LoyalServant4
-    case MinionOfMordred1
-    case MinionOfMordred2
-    case MinionOfMordred3
-    case MinionOfMordred4
+    case merlin = 1
+    case percival
+    case morgana
+    case mordred
+    case oberon
+    case assassin
+    case loyalServant1
+    case loyalServant2
+    case loyalServant3
+    case loyalServant4
+    case minionOfMordred1
+    case minionOfMordred2
+    case minionOfMordred3
+    case minionOfMordred4
     
-    static let allLoyalServants: [Character] = [.Merlin, .Percival, LoyalServant1, LoyalServant2, LoyalServant3, LoyalServant4]
+    static let allLoyalServants: [Character] = [.merlin, .percival, loyalServant1, loyalServant2, loyalServant3, loyalServant4]
     
-    static let allMinionsOfMordred: [Character] = [.Mordred, .Morgana, .Oberon, .Assassin, .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4]
+    static let allMinionsOfMordred: [Character] = [.mordred, .morgana, .oberon, .assassin, .minionOfMordred1, .minionOfMordred2, .minionOfMordred3, .minionOfMordred4]
     
-    static let mandatoryCharacters: [Character] = [.Merlin, .Assassin]
+    static let mandatoryCharacters: [Character] = [.merlin, .assassin]
     
-    static let charactersToChoose: [Character] = [.Mordred, .Morgana, .Oberon, .Percival]
+    static let charactersToChoose: [Character] = [.mordred, .morgana, .oberon, .percival]
     
     var name: String {
         var val = ""
         
         switch self {
-        case .Mordred:
+        case .mordred:
             val = "Mordred"
-        case .Morgana:
+        case .morgana:
             val = "Morgana"
-        case .Merlin:
+        case .merlin:
             val = "Merlin"
-        case .Percival:
+        case .percival:
             val = "Percival"
-        case .Oberon:
+        case .oberon:
             val = "Oberon"
-        case .Assassin:
+        case .assassin:
             val = "Assassin"
         default:
             break
@@ -65,13 +65,13 @@ enum Character: Int {
         var val = ""
         
         switch self {
-        case .Mordred:
+        case .mordred:
             val = "Unknown to Merlin"
-        case .Morgana:
+        case .morgana:
             val = "Appears as Merlin"
-        case .Merlin:
+        case .merlin:
             val = "Knows evil"
-        case .Oberon:
+        case .oberon:
             val = "Unknown to evil"
         default:
             break
@@ -85,11 +85,11 @@ enum Character: Int {
         var val = ""
         
         switch self {
-        case .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4, .Assassin, .Mordred, .Morgana:
+        case .minionOfMordred1, .minionOfMordred2, .minionOfMordred3, .minionOfMordred4, .assassin, .mordred, .morgana:
             val = "The highlighted characters are the Minions of Mordred."
-        case .Merlin:
+        case .merlin:
             val = "The highlighted characters are the Minions of Mordred."
-        case .Percival:
+        case .percival:
             val = "The highlighted characters are Merlin and Morgana."
         default:
             break
@@ -110,19 +110,19 @@ enum Character: Int {
         var chars: [Character]?
         
         switch self {
-        case .MinionOfMordred1, .MinionOfMordred2, .MinionOfMordred3, .MinionOfMordred4, .Assassin, .Mordred, .Morgana:
+        case .minionOfMordred1, .minionOfMordred2, .minionOfMordred3, .minionOfMordred4, .assassin, .mordred, .morgana:
             
             chars = characters.filter({ (char) -> Bool in
-                return char.isMinionOfMordred() && char.rawValue != Character.Oberon.rawValue
+                return char.isMinionOfMordred() && char.rawValue != Character.oberon.rawValue
             })
             
-        case .Merlin:
+        case .merlin:
             chars = characters.filter({ (char) -> Bool in
-                return char.isMinionOfMordred() && char.rawValue != Character.Mordred.rawValue
+                return char.isMinionOfMordred() && char.rawValue != Character.mordred.rawValue
             })
-        case .Percival:
+        case .percival:
             chars = characters.filter({ (char) -> Bool in
-                return char == .Merlin || char == .Morgana
+                return char == .merlin || char == .morgana
             })
         default:
             break

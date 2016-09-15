@@ -9,18 +9,18 @@
 import Foundation
 
 enum VoteToken: Int {
-    case Reject
-    case Approve
+    case reject
+    case approve
 }
 
 enum QuestCard: Int {
-    case Fail
-    case Success
+    case fail
+    case success
 }
 
 enum QuestResult {
-    case Success (numberOfFails: Int?)
-    case Fail (numberOfFails: Int)
+    case success (numberOfFails: Int?)
+    case fail (numberOfFails: Int)
 }
 
 class GameRules {

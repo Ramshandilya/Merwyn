@@ -403,8 +403,8 @@
 		5B6D70D31D87BC7600AB36EC /* CharacterSelection */ = {
 			isa = PBXGroup;
 			children = (
-				5B6D70D41D87BC7600AB36EC /* CharacterSelectionTableViewCell.swift */,
 				5B6D70D51D87BC7600AB36EC /* CharacterSelectionViewController.swift */,
+				5B6D70D41D87BC7600AB36EC /* CharacterSelectionTableViewCell.swift */,
 				5B6D70D61D87BC7600AB36EC /* CharacterSelectionViewModel.swift */,
 			);
 			path = CharacterSelection;
