@@ -19,9 +19,9 @@ class GameRoom {
         self.name = name
     }
     
-    init?(json: JSONDictionary) {
+    convenience init?(json: JSONDictionary) {
         guard let name = json["name"] as? String else { return nil }
         
-        self.name = name
+        self.init(name: name)
     }
 }

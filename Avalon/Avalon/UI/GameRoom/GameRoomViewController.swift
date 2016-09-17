@@ -10,6 +10,8 @@ import UIKit
 
 class GameRoomViewController: UIViewController {
 
+    static let kStoryboardIdentifier = "GameRoomViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
