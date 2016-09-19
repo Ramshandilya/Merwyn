@@ -59,6 +59,7 @@
 		5B6D70EA1D87D14900AB36EC /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70E91D87D14900AB36EC /* Player.swift */; };
 		5B6D70ED1D87D49B00AB36EC /* GameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70EC1D87D49B00AB36EC /* GameRoomViewController.swift */; };
 		5B6D70EF1D87D4AD00AB36EC /* GameRoomsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D70EE1D87D4AD00AB36EC /* GameRoomsListViewController.swift */; };
+		5BB0B0101D8ED15400CB5560 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB0B00F1D8ED15400CB5560 /* FirebaseKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		5B6D70E91D87D14900AB36EC /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5B6D70EC1D87D49B00AB36EC /* GameRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRoomViewController.swift; sourceTree = "<group>"; };
 		5B6D70EE1D87D4AD00AB36EC /* GameRoomsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRoomsListViewController.swift; sourceTree = "<group>"; };
+		5BB0B00F1D8ED15400CB5560 /* FirebaseKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6D70E51D87C3D600AB36EC /* FirebaseClient.swift */,
+				5BB0B00F1D8ED15400CB5560 /* FirebaseKeys.swift */,
 			);
 			path = FirebaseInterface;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				5B6D70DC1D87BC7600AB36EC /* CharacterSelectionTableViewCell.swift in Sources */,
 				5B6D70E21D87BCB700AB36EC /* HomeViewController.swift in Sources */,
 				5B6D70EA1D87D14900AB36EC /* Player.swift in Sources */,
+				5BB0B0101D8ED15400CB5560 /* FirebaseKeys.swift in Sources */,
 				5B6D709F1D80392A00AB36EC /* Characters.swift in Sources */,
 				5B6D70EF1D87D4AD00AB36EC /* GameRoomsListViewController.swift in Sources */,
 				5B6D70411D80384100AB36EC /* AppDelegate.swift in Sources */,

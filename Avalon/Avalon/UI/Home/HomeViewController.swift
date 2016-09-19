@@ -65,10 +65,14 @@ extension HomeViewController {
         
         let client = FirebaseClient()
         client.createRoom(withName: name)
-        
+        /*
         guard let roomVC = storyboard?.instantiateViewController(withIdentifier: GameRoomViewController.kStoryboardIdentifier) as? GameRoomViewController else { return }
         
         navigationController?.pushViewController(roomVC, animated: true)
+        */
+        guard let listVC = storyboard?.instantiateViewController(withIdentifier: GameRoomsListViewController.kStoryboardIdentifier) as? GameRoomsListViewController else { return }
+        
+        navigationController?.pushViewController(listVC, animated: true)
     }
 
 }

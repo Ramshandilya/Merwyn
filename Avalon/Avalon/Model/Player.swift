@@ -15,4 +15,30 @@ class Player {
     var isHost = false
     
     var displayPhotoURL: String?
+    
+     convenience init?(json: JSONDictionary) {
+        guard let name = json[FirebaseKeys.Player.kDisplayName] as? String else { return nil }
+        
+        self.init()
+        
+        self.displayName = name
+        if let isHost = json[FirebaseKeys.Player.kIsHost] as? Bool {
+            self.isHost = isHost
+        }
+    }
 }
+
+extension Player {
+    
+    func toJSONDictionary() -> JSONDictionary {
+        
+        var playerData = JSONDictionary()
+        playerData[FirebaseKeys.Player.kDisplayName] = displayName
+        playerData[FirebaseKeys.Player.kId] = id
+        playerData[FirebaseKeys.Player.kIsHost] = isHost
+        
+        return playerData
+    }
+}
+
+

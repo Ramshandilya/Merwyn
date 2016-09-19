@@ -22,14 +22,14 @@ class FirebaseClient {
     let databseRef = FIRDatabase.database().reference()
     
     var gameRoomRef: FIRDatabaseReference {
-        return databseRef.child("game_rooms")
+        return databseRef.child(FirebaseKeys.GameRoom.kGameRooms)
     }
     weak var gameRoomDelegate: FirebaseClientGameRoomDelegate?
     var gameRoomRefHandle: FIRDatabaseHandle!
     
     
     deinit {
-        gameRoomRef.removeObserver(withHandle: gameRoomRefHandle)
+        //gameRoomRef.removeObserver(withHandle: gameRoomRefHandle)
     }
 }
 
@@ -38,15 +38,15 @@ extension FirebaseClient {
     
     func createRoom(withName name: String) {
         
-        let playerName = FIRAuth.auth()?.currentUser?.displayName
+        let host = Player()
+        host.displayName = FIRAuth.auth()?.currentUser?.displayName
+        host.isHost = true
         
-        var mdata = JSONDictionary()
+        let room = GameRoom(name: name)
+        room.players = [host]
         
-        mdata["name"] = name
-        mdata["host_name"] = playerName
-        mdata["players"] = [playerName]
-        
-        databseRef.child("game_rooms").childByAutoId().setValue(mdata)
+        let roomData = room.toJSONDictionary()
+        gameRoomRef.childByAutoId().setValue(roomData)
     }
     
     func setupGameRoomObservers() {
