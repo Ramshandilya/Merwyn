@@ -14,12 +14,14 @@ struct FirebaseKeys {
         
         static let kGameRooms = "game_rooms"
         static let kName = "name"
+        static let kId = "id"
         static let kHostName = "host_name"
         static let kPlayers = "players"
         static let kStarted = "started"
     }
     
     struct Player {
+        
         static let kId = "id"
         static let kDisplayName = "display_name"
         static let kIsHost = "is_host"

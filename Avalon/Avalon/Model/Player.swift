@@ -16,6 +16,8 @@ class Player {
     
     var displayPhotoURL: String?
     
+    weak var gameRoom: GameRoom?
+    
      convenience init?(json: JSONDictionary) {
         guard let name = json[FirebaseKeys.Player.kDisplayName] as? String else { return nil }
         
@@ -40,5 +42,3 @@ extension Player {
         return playerData
     }
 }
-
-

@@ -10,6 +10,7 @@ import Foundation
 
 class GameRoom {
     
+    var id: String?
     var name: String
     var players = [Player]()
     var host: String?
@@ -24,6 +25,7 @@ class GameRoom {
         
         self.init(name: name)
         
+        self.id = json[FirebaseKeys.GameRoom.kId] as? String
         self.host = json[FirebaseKeys.GameRoom.kHostName] as? String
         
         if let playersJSON = json[FirebaseKeys.GameRoom.kPlayers] as? [JSONDictionary]{
@@ -61,3 +63,4 @@ extension GameRoom {
         return roomJSON
     }
 }
+

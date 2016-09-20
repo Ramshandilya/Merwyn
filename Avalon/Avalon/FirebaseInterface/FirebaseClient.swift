@@ -17,6 +17,11 @@ protocol FirebaseClientGameRoomDelegate: class {
     func firebaseClient(_ client: FirebaseClient, databaseDidAddGameRoom room: GameRoom)
 }
 
+protocol FirebaseClientPlayerDelegate: class {
+    func firebaseClient(_ client: FirebaseClient, playerDidJoin player: Player)
+    func firebaseClient(_ client: FirebaseClient, playerDidLeave player: Player)
+}
+
 class FirebaseClient {
     
     let databseRef = FIRDatabase.database().reference()
@@ -24,12 +29,33 @@ class FirebaseClient {
     var gameRoomRef: FIRDatabaseReference {
         return databseRef.child(FirebaseKeys.GameRoom.kGameRooms)
     }
-    weak var gameRoomDelegate: FirebaseClientGameRoomDelegate?
-    var gameRoomRefHandle: FIRDatabaseHandle!
     
+    weak var gameRoomDelegate: FirebaseClientGameRoomDelegate?
+    weak var playerDelegate: FirebaseClientPlayerDelegate?
+    
+    var gameRoomRefHandle: FIRDatabaseHandle?
+    var playerRefHandle: FIRDatabaseHandle?
+    
+    func playerRef(forGameRoom gameRoom: GameRoom) -> FIRDatabaseReference? {
+        
+        guard let id = gameRoom.id else {
+            return nil
+        }
+        
+        let ref = gameRoomRef.child("\(id)/\(FirebaseKeys.GameRoom.kPlayers))")
+        
+        return ref
+    }
     
     deinit {
-        //gameRoomRef.removeObserver(withHandle: gameRoomRefHandle)
+        
+        if let handle = gameRoomRefHandle {
+           gameRoomRef.removeObserver(withHandle: handle)
+        }
+        
+        if let handle = playerRefHandle {
+            gameRoomRef.removeObserver(withHandle: handle)
+        }
     }
 }
 
@@ -80,3 +106,51 @@ extension FirebaseClient {
     }
 }
 
+//Player
+extension FirebaseClient {
+    
+    func setupPlayerObservers(forGameRoom gameRoom: GameRoom) {
+        
+        
+        playerRefHandle = playerRef(forGameRoom: gameRoom)?.observe(FIRDataEventType.childAdded, with: {[weak self] (snapshot) in
+            
+            if let strongSelf = self,
+                let snapshotJSON = snapshot.value as? JSONDictionary,
+                let player = Player(json: snapshotJSON) {
+                
+                strongSelf.playerDelegate?.firebaseClient(strongSelf, playerDidJoin: player)
+            }
+            
+            })
+        
+        playerRefHandle = playerRef(forGameRoom: gameRoom)?.observe(FIRDataEventType.childRemoved, with: {[weak self] (snapshot) in
+            
+            if let strongSelf = self,
+                let snapshotJSON = snapshot.value as? JSONDictionary,
+                let player = Player(json: snapshotJSON) {
+                
+                strongSelf.playerDelegate?.firebaseClient(strongSelf, playerDidLeave: player)
+            }
+            
+            })
+    }
+    
+    func fetchPlayers(forGameRoom gameRoom: GameRoom, completion: @escaping ([Player]) -> Void) {
+        playerRef(forGameRoom: gameRoom)?.observe(FIRDataEventType.value, with: { (snapshot: FIRDataSnapshot) in
+            
+            var players = [Player]()
+            
+            for item in snapshot.children {
+                
+                if let snapshotJSON = (item as? FIRDataSnapshot)?.value as? JSONDictionary,
+                    let player = Player(json: snapshotJSON) {
+                    
+                    players.append(player)
+                }
+            }
+            
+            completion(players)
+        })
+    }
+    
+}
