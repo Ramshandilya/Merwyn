@@ -101,7 +101,9 @@ extension FirebaseClient {
                 }
             }
             
-            completion(rooms)
+            DispatchQueue.main.async {
+                completion(rooms)
+            }
         })
     }
 }
@@ -149,7 +151,9 @@ extension FirebaseClient {
                 }
             }
             
-            completion(players)
+            DispatchQueue.main.async {
+                completion(players)
+            }
         })
     }
     

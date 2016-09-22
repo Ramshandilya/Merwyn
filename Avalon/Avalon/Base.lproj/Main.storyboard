@@ -141,6 +141,10 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="tMS-tc-7Kf" id="QYU-zI-GjJ"/>
+                        <outlet property="tableView" destination="JL5-ac-CZ0" id="wLK-dc-LvN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1X-wV-kiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

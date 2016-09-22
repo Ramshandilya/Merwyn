@@ -25,7 +25,7 @@ class GameRoomsListViewController: UIViewController {
         
         client.fetchRooms { (rooms) in
             self.gameRooms = rooms
-            self.tableView.reloadData()
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
 }
@@ -50,7 +50,12 @@ extension GameRoomsListViewController: UITableViewDataSource {
 extension GameRoomsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let gameRoomVC = storyboard?.instantiateViewController(withIdentifier: GameRoomViewController.kStoryboardIdentifier) as? GameRoomViewController else { return }
         
+        let gameRoom = gameRooms[indexPath.row]
+        gameRoomVC.gameRoom = gameRoom
+        
+        navigationController?.pushViewController(gameRoomVC, animated: true)
     }
 }
 
@@ -58,6 +63,6 @@ extension GameRoomsListViewController: FirebaseClientGameRoomDelegate {
     
     func firebaseClient(_ client: FirebaseClient, databaseDidAddGameRoom room: GameRoom) {
         gameRooms.append(room)
-        tableView.reloadData()
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
 }
