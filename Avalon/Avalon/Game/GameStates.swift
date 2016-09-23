@@ -84,9 +84,11 @@ class GameStateMachine: GKStateMachine {
     
     var numberOfPlayers: Int
     
+    private(set) var players: [Player]!
     private(set) var playingCharacters = [Character]()
+    
     private(set) var currentQuest = 0
-    private(set) var score: [QuestResult?] = [nil, nil, nil, nil, nil]
+    private(set) var score: [QuestResult] = [.unknown, .unknown, .unknown, .unknown, .unknown]
     
     private let rules = GameRules()
     
@@ -150,7 +152,7 @@ class GameStateMachine: GKStateMachine {
         return (successes >= 3) ? Team.loyalServantsOfArthur : Team.minionsOfMordred
     }
     
-    func prepareCharacters(preSelected: [Character]?) {
+    private func prepareCharacters(preSelected: [Character]?) {
         
         guard let maxMinions = rules.numberOfMinions[numberOfPlayers] else { return }
         
@@ -181,5 +183,20 @@ class GameStateMachine: GKStateMachine {
         playingCharacters += minionsToTake + loyalsToTake
     }
     
+    func assignCharacters(toPlayers players:[Player], preSelectedCharacters preSelected: [Character]) {
+        prepareCharacters(preSelected: preSelected)
+        
+        guard let shuffledCharacters = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: playingCharacters) as? [Character] else {
+            return
+        }
+        
+        guard players.count == shuffledCharacters.count else {
+            return //TODO: Throw error
+        }
+        
+        for (index, player) in players.enumerated() {
+            player.character = shuffledCharacters[index]
+        }
+    }
 }
 

@@ -25,6 +25,7 @@ struct FirebaseKeys {
         static let kId = "id"
         static let kDisplayName = "display_name"
         static let kIsHost = "is_host"
+        static let kCharacter = "character"
     }
     
 }

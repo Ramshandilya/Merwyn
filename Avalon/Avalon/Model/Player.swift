@@ -16,6 +16,8 @@ class Player {
     
     var displayPhotoURL: String?
     
+    var character: Character?
+    
     weak var gameRoom: GameRoom?
     
      convenience init?(json: JSONDictionary) {
@@ -26,6 +28,10 @@ class Player {
         self.displayName = name
         if let isHost = json[FirebaseKeys.Player.kIsHost] as? Bool {
             self.isHost = isHost
+        }
+        
+        if let val = json[FirebaseKeys.Player.kCharacter] as? Int {
+            self.character = Character(rawValue: val)
         }
     }
 }
@@ -38,6 +44,7 @@ extension Player {
         playerData[FirebaseKeys.Player.kDisplayName] = displayName
         playerData[FirebaseKeys.Player.kId] = id
         playerData[FirebaseKeys.Player.kIsHost] = isHost
+        playerData[FirebaseKeys.Player.kCharacter] = character?.rawValue
         
         return playerData
     }

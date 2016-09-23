@@ -19,6 +19,7 @@ enum QuestCard: Int {
 }
 
 enum QuestResult {
+    case unknown
     case success (numberOfFails: Int?)
     case fail (numberOfFails: Int)
 }
