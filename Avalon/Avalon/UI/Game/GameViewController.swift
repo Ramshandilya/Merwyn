@@ -10,6 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController {
     
+    static let kStoryboardIdentifier = "GameViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()

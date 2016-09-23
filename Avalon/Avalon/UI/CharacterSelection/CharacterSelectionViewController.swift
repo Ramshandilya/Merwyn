@@ -10,6 +10,8 @@ import UIKit
 
 class CharacterSelectionViewController: UIViewController {
 
+    static let kStoryboardIdentifier = "CharacterSelectionViewController"
+    
     let viewModel = CharacterSelectionViewModel()
     
     override func viewDidLoad() {
@@ -20,6 +22,13 @@ class CharacterSelectionViewController: UIViewController {
     @IBAction func startGame(sender: AnyObject) {
         let characters = viewModel.selectedCharacters()
         print(characters)
+        
+        let gameStateMachine = GameStateMachine(numberOfPlayers: viewModel.players.count)
+        gameStateMachine.assignCharacters(toPlayers: viewModel.players, preSelectedCharacters: characters)
+        
+        guard let gameVC = storyboard?.instantiateViewController(withIdentifier: GameViewController.kStoryboardIdentifier) as? GameViewController else { return }
+        
+        navigationController?.pushViewController(gameVC, animated: true)
     }
 }
 

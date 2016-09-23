@@ -35,6 +35,15 @@ class GameRoomViewController: UIViewController {
             self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
+    
+    @IBAction func nextAction(_ sender: AnyObject) {
+        
+        guard let characterSelectionVC = storyboard?.instantiateViewController(withIdentifier: GameRoomViewController.kStoryboardIdentifier) as? CharacterSelectionViewController else { return }
+        
+        characterSelectionVC.viewModel.players = players
+        
+        navigationController?.pushViewController(characterSelectionVC, animated: true)
+    }
 }
 
 extension GameRoomViewController: UITableViewDataSource {

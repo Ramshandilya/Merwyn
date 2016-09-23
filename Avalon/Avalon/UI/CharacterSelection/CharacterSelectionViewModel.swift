@@ -23,7 +23,8 @@ class CharacterRow {
 class CharacterSelectionViewModel {
     
     var rows = [CharacterRow]()
-    
+    var players: [Player]!
+
     init() {
         
         for character in Character.mandatoryCharacters {

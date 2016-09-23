@@ -9,8 +9,7 @@
 import Foundation
 
 enum GameState: Int {
-    case playersJoining = 1
-    case selectCharacters
+    case selectCharacters = 1
     case gameStarted //Deal characters
     case selectQuestTeam
     case voteQuestTeam
@@ -20,13 +19,6 @@ enum GameState: Int {
 }
 
 import GameplayKit
-
-class PlayersJoiningState: GKState {
-    
-    override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass == SelectCharactersState.self
-    }
-}
 
 class SelectCharactersState: GKState {
     
@@ -95,9 +87,9 @@ class GameStateMachine: GKStateMachine {
     init(numberOfPlayers: Int) {
         self.numberOfPlayers = numberOfPlayers
         
-        super.init(states: [PlayersJoiningState(), SelectCharactersState(), GameStartedState(), SelectQuestTeamState(), VoteQuestTeamState(), QuestBeganState(), QuestEndedState(), GameEndedState()])
+        super.init(states: [SelectCharactersState(), GameStartedState(), SelectQuestTeamState(), VoteQuestTeamState(), QuestBeganState(), QuestEndedState(), GameEndedState()])
         
-        enter(PlayersJoiningState.self)
+        enter(SelectCharactersState.self)
     }
     
     func evaluateVotingRound(votes: [VoteToken]) -> Bool {
