@@ -95,8 +95,7 @@ extension FirebaseClient {
             for item in snapshot.children {
                 
                 if let snapshotJSON = (item as? FIRDataSnapshot)?.value as? JSONDictionary,
-                    let gameRoom = GameRoom(json: snapshotJSON) {
-                    
+                    let gameRoom = GameRoom(json: snapshotJSON), !gameRoom.started {
                     rooms.append(gameRoom)
                 }
             }

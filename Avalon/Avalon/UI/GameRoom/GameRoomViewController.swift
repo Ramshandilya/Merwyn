@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Screen to show list of players joining before the game starts.
 class GameRoomViewController: UIViewController {
 
     static let kStoryboardIdentifier = "GameRoomViewController"
@@ -34,7 +35,6 @@ class GameRoomViewController: UIViewController {
             self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
     }
-    
 }
 
 extension GameRoomViewController: UITableViewDataSource {

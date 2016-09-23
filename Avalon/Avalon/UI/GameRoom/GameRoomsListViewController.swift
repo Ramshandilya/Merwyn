@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Shows list of game rooms 
 class GameRoomsListViewController: UIViewController {
 
     static let kStoryboardIdentifier = "GameRoomsListViewController"
